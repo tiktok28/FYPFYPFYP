@@ -956,6 +956,7 @@ GameObject:
   - component: {fileID: 899093520}
   - component: {fileID: 899093519}
   - component: {fileID: 899093518}
+  - component: {fileID: 899093521}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -1028,9 +1029,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 899093521}
+        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1078,6 +1079,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899093516}
   m_CullTransparentMesh: 1
+--- !u!114 &899093521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899093516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7057f713a12410048931ebc99d01df70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1141282459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,6 +1943,7 @@ GameObject:
   - component: {fileID: 1237114215}
   - component: {fileID: 1237114214}
   - component: {fileID: 1237114213}
+  - component: {fileID: 1237114216}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -2002,10 +2016,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+      - m_Target: {fileID: 1237114216}
+        m_TargetAssemblyTypeName: ButtonHandler, Assembly-CSharp
+        m_MethodName: StartButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2052,6 +2066,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237114211}
   m_CullTransparentMesh: 1
+--- !u!114 &1237114216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237114211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7057f713a12410048931ebc99d01df70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1526634427
 GameObject:
   m_ObjectHideFlags: 0
