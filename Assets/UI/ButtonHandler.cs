@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -9,13 +10,51 @@ public class ButtonHandler : MonoBehaviour
         // Your code to execute when the button is clicked
         Debug.Log("Button Clicked!");
     }
-
     public void StartButton()
     {
-        Scene classroom;
-        GameObject menuXR = GameObject.Find("XR Origin (Main Menu)");
-        menuXR.SetActive(false);
-        classroom = SceneManager.GetSceneByName("Classroom");
+        Scene currentScene = SceneManager.GetActiveScene();
+        var currentObjs = currentScene.GetRootGameObjects();
+
+        for (int i = 0; i < currentObjs.Length; i++){
+            if(currentObjs[i].name == "MMCanvas"){
+                currentObjs[i].SetActive(false);
+            }
+            if(currentObjs[i].name == "StartCanvas"){
+                currentObjs[i].SetActive(true);
+            }
+        }
+    }
+    public void LoadSaveButton()
+    {
+        Debug.Log("Load save button");
+    }
+    public void QuitButton()
+    {
+        Application.Quit();
+        Debug.Log("Quit!");
+    }
+    public void ConceptsButton()
+    {
+        SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
+        Scene currentScene = SceneManager.GetActiveScene();
+        var currentObjs = currentScene.GetRootGameObjects();
+
+        for (int i = 0; i < currentObjs.Length; i++){
+            if(currentObjs[i].name == "StartCanvas"){
+                currentObjs[i].SetActive(false);
+            }
+            if(currentObjs[i].name == "ConceptsCanvas"){
+                currentObjs[i].SetActive(true);
+            }
+        }
+        
+    }
+    IEnumerator Concepts()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
+        mmXR.SetActive(false);
+        Scene classroom = SceneManager.GetSceneByName("Classroom");
         var sceneObjs = classroom.GetRootGameObjects();
         for (int i = 0; i < sceneObjs.Length; i++){
             if(sceneObjs[i].name == "XR Origin (Classroom)"){
@@ -23,9 +62,12 @@ public class ButtonHandler : MonoBehaviour
             }
         }
     }
-    public void QuitButton()
+    public void LightButton()
     {
-        Application.Quit();
-        Debug.Log("Quit!");
+        StartCoroutine(Concepts());
+    }
+    public void ElectricityButton()
+    {
+        StartCoroutine(Concepts());
     }
 }
