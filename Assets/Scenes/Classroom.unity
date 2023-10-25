@@ -6653,6 +6653,7 @@ GameObject:
   - component: {fileID: 1939884130}
   - component: {fileID: 1939884129}
   - component: {fileID: 1939884131}
+  - component: {fileID: 1939884132}
   m_Layer: 0
   m_Name: BoardText
   m_TagString: Untagged
@@ -6669,7 +6670,7 @@ RectTransform:
   m_GameObject: {fileID: 1939884127}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: -8.576686}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043661192}
@@ -6700,7 +6701,45 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sample text123123123123123123123.1@#!#(!123
+  m_text: "Lecture 1: Light - \"Exploring the Nature of Light\"\r\n\r\n-Introduction:\r\nGood
+    day, everyone! Today, we're embarking on a fascinating journey to explore the
+    captivating world of light, which is a fundamental topic in our physics curriculum.
+    Let's begin by understanding the fundamental principles of light and why it's
+    a crucial topic in our studies.\\u200B\n\n-The Nature of Light:\r\nLight exhibits
+    a dual nature, acting as both a wave and a particle. This phenomenon is known
+    as the wave-particle duality, which is a cornerstone in our understanding of
+    the universe.\r\\u200B\n\n\n\n\nLight is a subset of the electromagnetic spectrum,
+    a range of electromagnetic waves that includes radio waves, microwaves, infrared
+    radiation, visible light, ultraviolet radiation, X-rays, and gamma rays. The
+    study of light helps us grasp the broader concepts within this spectrum.\\u200B\r\n\r\n\n\n\n-Wave
+    Properties of Light:\r\nWhen we talk about light as a wave, we refer to its properties
+    such as wavelength and frequency. Wavelength is the distance between successive
+    wave peaks, and frequency measures how many wave cycles occur in a given time.
+    These properties are essential in the study of light and wave physics.\r\\u200B\n\n\n\nThe
+    constant speed of light in a vacuum, approximately 299,792,458 meters per second,
+    is a fundamental constant that remains consistent throughout our universe. Understanding
+    this constant's significance is critical for our studies.\\u200B\r\n\r\n\n\n\n\n-Reflection
+    and Refraction:\r\nLight exhibits distinct behaviors when it interacts with surfaces.
+    The concept of reflection is a key topic within our curriculum. When light strikes
+    a surface and bounces off, it forms the basis for how we perceive images in mirrors.\r\\u200B\n\n\n\n\nRefraction
+    is the bending of light as it passes from one medium to another, such as from
+    air into water or glass. This phenomenon is essential for understanding optical
+    devices and plays a crucial role in our curriculum.\r\\u200B\n\r\n\n\n\n\n-Optics:\r\nOptics,
+    a prominent part of our curriculum, introduces the study of lenses and mirrors.
+    Lenses can be concave (curving inward) or convex (curving outward), and mirrors
+    can be concave and convex as well. These optical elements find applications in
+    devices such as eyeglasses, telescopes, microscopes, and cameras, making them
+    vital to our understanding of technology and scientific principles.\r\\u200B\n\r\n\n-Color
+    and Dispersion:\r\nThe formation of colors is a remarkable aspect of our curriculum.
+    Light is composed of various colors, and when it passes through a prism, it disperses
+    into its constituent colors. This dispersion is the reason we see beautiful rainbows
+    in the sky.\r\n\nUnderstanding color and dispersion is essential for our studies
+    and provides a foundation for grasping the principles of optics, color theory,
+    and spectroscopy.\r\\u200B\n\r\n-Conclusion:\r\nIn conclusion, we've explored
+    the captivating world of light, emphasizing its dual nature, wave properties,
+    reflection, refraction, optics, and the enchanting world of colors and dispersion.
+    These concepts are fundamental for our physics curriculum and serve as a strong
+    foundation for your further studies in this field."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6727,15 +6766,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
-  m_fontSizeBase: 200
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -6745,7 +6784,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 5
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -6826,11 +6865,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed85b5f0cc938548b07436319816406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersPerSecond: 20
-  interpunctuationDelay: 0.5
+  charactersPerSecond: 200
+  interpunctuationDelay: 0.01
   quickSkip: 0
   skipSpeedup: 5
   sendDoneDelay: 0.25
+--- !u!114 &1939884132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939884127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bbaddc6d4a923347b1874252bbb2460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1946705860
 PrefabInstance:
   m_ObjectHideFlags: 0
