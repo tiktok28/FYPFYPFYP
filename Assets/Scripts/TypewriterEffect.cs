@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.IO;
+using System.Text;
 using UnityEngine;
 using TMPro;
 using Object = UnityEngine.Object;
@@ -40,7 +42,40 @@ public class TypewriterEffect : MonoBehaviour
 
     private void Awake()
     {
+        
         _textBox = GetComponent<TMP_Text>();
+        if(GameManager.Instance.lectureMode == 0){
+            try
+            {
+                String filePath = "Assets/Resources/lightLecture.txt";
+                using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
+                {
+                    // Read the entire contents of the text file into a string
+                    string filetext = reader.ReadToEnd();
+                    _textBox.text = filetext;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log("An error occurred: " + e.Message);
+            }
+        }
+        else{
+            try
+                {
+                    String filePath = "Assets/Resources/electricityLecture.txt";
+                    using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
+                    {
+                        // Read the entire contents of the text file into a string
+                        string filetext = reader.ReadToEnd();
+                        _textBox.text = filetext;
+                    }
+                }
+            catch (Exception e)
+            {
+                Debug.Log("An error occurred: " + e.Message);
+            }
+        }
 
         _simpleDelay = new WaitForSeconds(1 / charactersPerSecond);
         _interpunctuationDelay = new WaitForSeconds(interpunctuationDelay);

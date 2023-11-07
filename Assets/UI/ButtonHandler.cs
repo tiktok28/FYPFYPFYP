@@ -47,8 +47,24 @@ public class ButtonHandler : MonoBehaviour
         }
         
     }
-    IEnumerator Concepts()
+    IEnumerator LightConcepts()
     {
+        GameManager.Instance.lectureMode = 0;
+        SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
+        yield return new WaitForSeconds(0.1f);
+        GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
+        mmXR.SetActive(false);
+        Scene classroom = SceneManager.GetSceneByName("Classroom");
+        var sceneObjs = classroom.GetRootGameObjects();
+        for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "XR Origin (Classroom)"){
+                sceneObjs[i].SetActive(true);
+            }
+        }
+    }
+    IEnumerator ElectricityConcepts()
+    {
+        GameManager.Instance.lectureMode = 1;
         SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
         yield return new WaitForSeconds(0.1f);
         GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
@@ -121,11 +137,11 @@ public class ButtonHandler : MonoBehaviour
     }
     public void LightConceptsButton()
     {
-        StartCoroutine(Concepts());
+        StartCoroutine(LightConcepts());
     }
     public void ElectricityConceptsButton()
     {
-        StartCoroutine(Concepts());
+        StartCoroutine(ElectricityConcepts());
     }
         public void LightDemonstrationsButton()
     {
