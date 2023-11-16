@@ -644,6 +644,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lectureMode: 0
+  demonstrationMode: 0
+  assessmentMode: 0
 --- !u!4 &195712809
 Transform:
   m_ObjectHideFlags: 0

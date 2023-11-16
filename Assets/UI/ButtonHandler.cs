@@ -35,6 +35,9 @@ public class ButtonHandler : MonoBehaviour
     }
     public void ConceptsButton()
     {
+        if(!SceneManager.GetSceneByName("Classroom").isLoaded){
+            SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
+        }
         Scene currentScene = SceneManager.GetActiveScene();
         var currentObjs = currentScene.GetRootGameObjects();
         for (int i = 0; i < currentObjs.Length; i++){
@@ -50,39 +53,46 @@ public class ButtonHandler : MonoBehaviour
     IEnumerator LightConcepts()
     {
         GameManager.Instance.lectureMode = 0;
-        SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
         yield return new WaitForSeconds(0.1f);
         GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
         mmXR.SetActive(false);
         Scene classroom = SceneManager.GetSceneByName("Classroom");
         var sceneObjs = classroom.GetRootGameObjects();
         for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "Lecture"){
+                sceneObjs[i].SetActive(true);
+            }
             if(sceneObjs[i].name == "XR Origin (Classroom)"){
                 sceneObjs[i].SetActive(true);
             }
         }
+        SceneManager.SetActiveScene(classroom);
     }
     IEnumerator ElectricityConcepts()
     {
         GameManager.Instance.lectureMode = 1;
-        SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
         yield return new WaitForSeconds(0.1f);
         GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
         mmXR.SetActive(false);
         Scene classroom = SceneManager.GetSceneByName("Classroom");
         var sceneObjs = classroom.GetRootGameObjects();
         for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "Lecture"){
+                sceneObjs[i].SetActive(true);
+            }
             if(sceneObjs[i].name == "XR Origin (Classroom)"){
                 sceneObjs[i].SetActive(true);
             }
         }
+        SceneManager.SetActiveScene(classroom);
     }
     public void DemonstrationsButton()
     {
-        SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
+        if(!SceneManager.GetSceneByName("Classroom").isLoaded){
+            SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
+        }
         Scene currentScene = SceneManager.GetActiveScene();
         var currentObjs = currentScene.GetRootGameObjects();
-
         for (int i = 0; i < currentObjs.Length; i++){
             if(currentObjs[i].name == "StartCanvas"){
                 currentObjs[i].SetActive(false);
@@ -101,14 +111,20 @@ public class ButtonHandler : MonoBehaviour
         Scene classroom = SceneManager.GetSceneByName("Classroom");
         var sceneObjs = classroom.GetRootGameObjects();
         for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "Demonstration"){
+                sceneObjs[i].SetActive(true);
+            }
             if(sceneObjs[i].name == "XR Origin (Classroom)"){
                 sceneObjs[i].SetActive(true);
             }
         }
+        SceneManager.SetActiveScene(classroom);
     }
     public void AssessmentsButton()
     {
-        SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
+        if(!SceneManager.GetSceneByName("Classroom").isLoaded){
+            SceneManager.LoadScene("Classroom", LoadSceneMode.Additive);
+        }
         Scene currentScene = SceneManager.GetActiveScene();
         var currentObjs = currentScene.GetRootGameObjects();
 
@@ -130,10 +146,14 @@ public class ButtonHandler : MonoBehaviour
         Scene classroom = SceneManager.GetSceneByName("Classroom");
         var sceneObjs = classroom.GetRootGameObjects();
         for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "Assessment"){
+                sceneObjs[i].SetActive(true);
+            }
             if(sceneObjs[i].name == "XR Origin (Classroom)"){
                 sceneObjs[i].SetActive(true);
             }
         }
+        SceneManager.SetActiveScene(classroom);
     }
     public void LightConceptsButton()
     {
@@ -143,7 +163,7 @@ public class ButtonHandler : MonoBehaviour
     {
         StartCoroutine(ElectricityConcepts());
     }
-        public void LightDemonstrationsButton()
+    public void LightDemonstrationsButton()
     {
         StartCoroutine(Demonstrations());
     }
@@ -158,5 +178,33 @@ public class ButtonHandler : MonoBehaviour
     public void ElectricityAssessmentsButton()
     {
         StartCoroutine(Assessments());
+    }
+    public void ResumeButton()
+    {
+        var sceneObjs = SceneManager.GetActiveScene().GetRootGameObjects();
+        GameObject menuCanvas = null;
+            for (int i = 0; i < sceneObjs.Length; i++)
+            {
+                if(sceneObjs[i].name == "MenuCanvas")
+                {
+                    menuCanvas = sceneObjs[i];
+                }
+            }
+        menuCanvas.SetActive(false);
+        Time.timeScale = 1;
+    }
+    public void SaveNExitButton()
+    {
+        var sceneObjs = SceneManager.GetActiveScene().GetRootGameObjects();
+        GameObject menuCanvas = null;
+            for (int i = 0; i < sceneObjs.Length; i++)
+            {
+                if(sceneObjs[i].name == "MenuCanvas")
+                {
+                    menuCanvas = sceneObjs[i];
+                }
+            }
+        menuCanvas.SetActive(false);
+        Time.timeScale = 1;
     }
 }
