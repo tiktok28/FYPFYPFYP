@@ -5985,6 +5985,7 @@ GameObject:
   - component: {fileID: 697897234}
   - component: {fileID: 697897233}
   - component: {fileID: 697897235}
+  - component: {fileID: 697897236}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
@@ -6001,7 +6002,7 @@ RectTransform:
   m_GameObject: {fileID: 697897230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.148}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1684143003}
@@ -6079,6 +6080,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &697897236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697897230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3b95dc38a1d8b479346100d55aafe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 574190023}
+  CameraDistance: 3
+  smoothTime: 0.3
 --- !u!1001 &699539653
 PrefabInstance:
   m_ObjectHideFlags: 0
