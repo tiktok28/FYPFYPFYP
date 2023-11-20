@@ -1881,13 +1881,13 @@ GameObject:
   - component: {fileID: 895702729}
   - component: {fileID: 895702728}
   - component: {fileID: 895702727}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: XR Origin (Main Menu)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &895702727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5964,7 +5964,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b30489ea5e8790b45ab18e75287b3b6b, type: 2}
+  - {fileID: 2100000, guid: 1dbcdd8ff94528e48b2ec42b537b1d40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
