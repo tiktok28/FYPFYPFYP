@@ -16,7 +16,6 @@ public class TextManager : MonoBehaviour
     {
         _textBox = GetComponent<TMP_Text>();
         _textBox.text = lectureText[count];
-        count++;
     }
     void Awake()
     {

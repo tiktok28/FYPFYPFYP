@@ -47,8 +47,8 @@ public class PageSkipper : MonoBehaviour
     {
         if(!(textManager.count >= textManager.lectureText.Count))
         {
-            _textBox.text = textManager.lectureText[textManager.count];
             textManager.count++;
+            _textBox.text = textManager.lectureText[textManager.count];
             button.SetActive(false);
         }
     }
