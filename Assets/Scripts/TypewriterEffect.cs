@@ -11,7 +11,7 @@ public class TypewriterEffect : MonoBehaviour
     private TMP_Text _textBox;
 
     // Basic Typewriter Functionality
-    private int _currentVisibleCharacterIndex;
+    public int _currentVisibleCharacterIndex;
     private Coroutine _typewriterCoroutine;
     private bool _readyForNewText = true;
 
@@ -44,38 +44,6 @@ public class TypewriterEffect : MonoBehaviour
     {
         
         _textBox = GetComponent<TMP_Text>();
-        if(GameManager.Instance.lectureMode == 0){
-            try
-            {
-                String filePath = "Assets/Resources/lightLecture.txt";
-                using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
-                {
-                    // Read the entire contents of the text file into a string
-                    string filetext = reader.ReadToEnd();
-                    _textBox.text = filetext;
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.Log("An error occurred: " + e.Message);
-            }
-        }
-        else{
-            try
-                {
-                    String filePath = "Assets/Resources/electricityLecture.txt";
-                    using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
-                    {
-                        // Read the entire contents of the text file into a string
-                        string filetext = reader.ReadToEnd();
-                        _textBox.text = filetext;
-                    }
-                }
-            catch (Exception e)
-            {
-                Debug.Log("An error occurred: " + e.Message);
-            }
-        }
 
         _simpleDelay = new WaitForSeconds(1 / charactersPerSecond);
         _interpunctuationDelay = new WaitForSeconds(interpunctuationDelay);
@@ -188,6 +156,7 @@ public class TypewriterEffect : MonoBehaviour
             }
             
             CharacterRevealed?.Invoke(character);
+
             _currentVisibleCharacterIndex++;
         }
     }

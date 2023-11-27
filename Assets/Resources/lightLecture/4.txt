@@ -1,0 +1,2 @@
+-Wave Properties of Light:
+When we talk about light as a wave, we refer to its properties such as wavelength and frequency. Wavelength is the distance between successive wave peaks, and frequency measures how many wave cycles occur in a given time. These properties are essential in the study of light and wave physics.

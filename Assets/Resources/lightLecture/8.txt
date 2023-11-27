@@ -1,0 +1,2 @@
+-Optics:
+Optics, a prominent part of our curriculum, introduces the study of lenses and mirrors. Lenses can be concave (curving inward) or convex (curving outward), and mirrors can be concave and convex as well. These optical elements find applications in devices such as eyeglasses, telescopes, microscopes, and cameras, making them vital to our understanding of technology and scientific principles.

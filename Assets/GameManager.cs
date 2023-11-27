@@ -28,40 +28,15 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        var sceneObjs = SceneManager.GetActiveScene().GetRootGameObjects();
-        if(Input.GetKeyDown(KeyCode.Escape) && (SceneManager.GetActiveScene().name=="Classroom"))
-        {
-            GameObject menuCanvas = null;
-            for (int i = 0; i < sceneObjs.Length; i++)
-            {
-                if(sceneObjs[i].name == "MenuCanvas")
-                {
-                    menuCanvas = sceneObjs[i];
-                }
-            }
-            if(menuCanvas != null)
-            {
-                if(!menuCanvas.activeInHierarchy)
-                {
-                    menuCanvas.SetActive(true);
-                    PauseGame();
-                }
-                else
-                {
-                    menuCanvas.SetActive(false);
-                    ResumeGame();
-                }
-            }
-
-        }
+        
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0;
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
         Time.timeScale = 1;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GazeUpdater : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
+    [SerializeField] private new Camera camera;
     private RectTransform pos;
     public float CameraDistance = 3.0F;
     public float smoothTime = 0.3F;
