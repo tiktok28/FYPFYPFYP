@@ -181,30 +181,16 @@ public class ButtonHandler : MonoBehaviour
     }
     public void ResumeButton()
     {
-        var sceneObjs = SceneManager.GetActiveScene().GetRootGameObjects();
-        GameObject menuCanvas = null;
-            for (int i = 0; i < sceneObjs.Length; i++)
-            {
-                if(sceneObjs[i].name == "MenuCanvas")
-                {
-                    menuCanvas = sceneObjs[i];
-                }
-            }
+        GameObject pauseMenu = GameObject.Find("PauseMenu");
+        GameObject menuCanvas = pauseMenu.transform.Find("MenuCanvas").gameObject;
         menuCanvas.SetActive(false);
-        Time.timeScale = 1;
+        GameManager.Instance.ResumeGame();
     }
     public void SaveNExitButton()
     {
-        var sceneObjs = SceneManager.GetActiveScene().GetRootGameObjects();
-        GameObject menuCanvas = null;
-            for (int i = 0; i < sceneObjs.Length; i++)
-            {
-                if(sceneObjs[i].name == "MenuCanvas")
-                {
-                    menuCanvas = sceneObjs[i];
-                }
-            }
+        GameObject pauseMenu = GameObject.Find("PauseMenu");
+        GameObject menuCanvas = pauseMenu.transform.Find("MenuCanvas").gameObject;
         menuCanvas.SetActive(false);
-        Time.timeScale = 1;
+        GameManager.Instance.ResumeGame();
     }
 }

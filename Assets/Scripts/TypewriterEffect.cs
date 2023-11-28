@@ -125,6 +125,7 @@ public class TypewriterEffect : MonoBehaviour
 
     private IEnumerator Typewriter()
     {
+        TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(PrepareForNewText);
         TMP_TextInfo textInfo = _textBox.textInfo;
 
         while (_currentVisibleCharacterIndex < textInfo.characterCount + 1)
@@ -134,8 +135,9 @@ public class TypewriterEffect : MonoBehaviour
             if (_currentVisibleCharacterIndex >= lastCharacterIndex)
             {
                 _textBox.maxVisibleCharacters++;
-                yield return _textboxFullEventDelay;
                 CompleteTextRevealed?.Invoke();
+                yield return _textboxFullEventDelay;
+                TMPro_EventManager.TEXT_CHANGED_EVENT.Add(PrepareForNewText);
                 _readyForNewText = true;
                 yield break;
             }

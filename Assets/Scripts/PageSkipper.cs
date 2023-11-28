@@ -18,7 +18,7 @@ public class PageSkipper : MonoBehaviour
     {
         TypewriterEffect.CompleteTextRevealed -= ButtonReveal;
     }
-    private void Awake()
+    private void Start()
     {
         _textBox = board.GetComponent<TMP_Text>();
         textManager = board.GetComponent<TextManager>();
@@ -38,14 +38,14 @@ public class PageSkipper : MonoBehaviour
     // }
     private void ButtonReveal()
     {
-        if(!(textManager.count >= textManager.lectureText.Count))
+        if(textManager.count < textManager.lectureText.Count - 1)
         {
             button.SetActive(true);
         }
     }
     public void ButtonClick()
     {
-        if(!(textManager.count >= textManager.lectureText.Count))
+        if(textManager.count < textManager.lectureText.Count - 1)
         {
             textManager.count++;
             _textBox.text = textManager.lectureText[textManager.count];

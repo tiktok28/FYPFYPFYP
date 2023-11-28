@@ -9,39 +9,79 @@ using System.Linq;
 public class TextManager : MonoBehaviour
 {
     public List<string> lectureText = new List<string>();
-    public string lectureName;
+    public List<string> demonstrationText = new List<string>();
+    private string lectureName;
+    private string demonstrationName;
+    public int mode = 0; //0 = Lecture, 1 = Demonstration
     private TMP_Text _textBox;
     public int count = 0;
     void Start()
     {
-        _textBox = GetComponent<TMP_Text>();
-        _textBox.text = lectureText[count];
+        if (mode == 0)
+        {
+            _textBox = GetComponent<TMP_Text>();
+            _textBox.text = lectureText[count];
+        }
+        else
+        {
+            _textBox = GetComponent<TMP_Text>();
+            _textBox.text = demonstrationText[count];
+        }
+
     }
     void Awake()
     {
-        if(GameManager.Instance.lectureMode == 0)
+        if(mode == 0)
         {
-            lectureName = "lightLecture";
+            if(GameManager.Instance.lectureMode == 0)
+            {
+                lectureName = "lightLecture";
+            }
+            else if(GameManager.Instance.lectureMode == 1)
+            {
+                lectureName = "electricityLecture";
+            }
+            // Directory path where your text files are located
+            string directoryPath = "Assets/Resources/" + lectureName;
+
+            // Get all text files in the specified directory
+            string[] textFiles = Directory.GetFiles(directoryPath, "*.txt").OrderBy(f =>int.Parse(Path.GetFileNameWithoutExtension(f))).ToArray();
+
+            // Iterate over each text file
+            foreach (string filePath in textFiles)
+            {
+                // Read the contents of the file
+                string fileContents = File.ReadAllText(filePath);
+
+                lectureText.Add(fileContents);
+                // Debug.Log(filePath);
+            }
         }
-        else if(GameManager.Instance.lectureMode == 1)
+        else
         {
-            lectureName = "electricityLecture";
-        }
-        // Directory path where your text files are located
-        string directoryPath = "Assets/Resources/" + lectureName;
+            if(GameManager.Instance.demonstrationMode == 0)
+            {
+                demonstrationName = "lightDemonstration";
+            }
+            else if(GameManager.Instance.demonstrationMode == 1)
+            {
+                demonstrationName = "electricityDemonstration";
+            }
+            // Directory path where your text files are located
+            string directoryPath = "Assets/Resources/" + demonstrationName;
 
-        // Get all text files in the specified directory
-        string[] textFiles = Directory.GetFiles(directoryPath, "*.txt").OrderBy(f =>int.Parse(Path.GetFileNameWithoutExtension(f))).ToArray();
+            // Get all text files in the specified directory
+            string[] textFiles = Directory.GetFiles(directoryPath, "*.txt").OrderBy(f =>int.Parse(Path.GetFileNameWithoutExtension(f))).ToArray();
 
-        // Iterate over each text file
-        foreach (string filePath in textFiles)
-        {
-            // Read the contents of the file
-            string fileContents = File.ReadAllText(filePath);
+            // Iterate over each text file
+            foreach (string filePath in textFiles)
+            {
+                // Read the contents of the file
+                string fileContents = File.ReadAllText(filePath);
 
-            lectureText.Add(fileContents);
-            // Debug.Log(filePath);
-
+                demonstrationText.Add(fileContents);
+                // Debug.Log(filePath);
+            }
         }
     }
 }
