@@ -1,0 +1,3 @@
+Upon observation, as light travels from a lighter medium to a denser medium, the refracted ray will bend towards the normal and consequently if a light travels from a denser medium to a lighter medium, the refracted ray will bend away from the normal.
+
+For reference, air has an approximate refractive index of 1.00 which will be used for all of our calculations.

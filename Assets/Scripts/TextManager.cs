@@ -12,20 +12,21 @@ public class TextManager : MonoBehaviour
     public List<string> demonstrationText = new List<string>();
     private string lectureName;
     private string demonstrationName;
-    public int mode = 0; //0 = Lecture, 1 = Demonstration
+    public int mode; //0 = Lecture, 1 = Demonstration
     private TMP_Text _textBox;
-    public int count = 0;
+    public int lectureCount = 0;
+    public int demonstrationCount = 0;
     void Start()
     {
         if (mode == 0)
         {
             _textBox = GetComponent<TMP_Text>();
-            _textBox.text = lectureText[count];
+            _textBox.text = lectureText[lectureCount];
         }
         else
         {
             _textBox = GetComponent<TMP_Text>();
-            _textBox.text = demonstrationText[count];
+            _textBox.text = demonstrationText[demonstrationCount];
         }
 
     }

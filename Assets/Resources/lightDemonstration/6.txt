@@ -1,0 +1,7 @@
+This relationship is written in the following equation:
+n1∙ sin θ1 = n2∙ sin θ2
+
+n1 = Refractive index of medium 1
+θ1 = Angle of incident ray hitting medium 2
+n2 = Refractive index of medium 2
+θ2 = Angle of refracted ray after hitting medium 2

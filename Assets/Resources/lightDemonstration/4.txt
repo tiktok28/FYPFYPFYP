@@ -1,0 +1,3 @@
+3. Triangular Protractor
+
+With the nature of this experiment, you are required to measure the angle of the incident and refracted ray to determine the refraction index of the prism. With this object, you can measure the angle. To use this object, ensure that flat long end is parallel to the surface of measurement.

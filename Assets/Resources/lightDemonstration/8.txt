@@ -1,0 +1,6 @@
+To demonstrate the experiment, the experiment will be setup in this manner:
+
+1. Place the prism at an appropriate distance.
+2. Place the laser at a certain angle and activate the laser beam.
+3. Take the protractor and lay the flat edge on the prism face that is being hit by the laser.
+4. Measure the angle between the normal and the angle of the incident ray and write it down.

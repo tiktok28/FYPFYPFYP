@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class PageSkipper : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PageSkipper : MonoBehaviour
     private TMP_Text _textBox;
     public GameObject button;
     private TextManager textManager;
+    public static event Action FullTextCompleted;
     private void OnEnable()
     {
         TypewriterEffect.CompleteTextRevealed += ButtonReveal;
@@ -23,33 +25,51 @@ public class PageSkipper : MonoBehaviour
         _textBox = board.GetComponent<TMP_Text>();
         textManager = board.GetComponent<TextManager>();
     }
-    // private void SkipPage(char character)
-    // {
-    //     // string str = "\u200B";
-    //     // foreach(char c in str){
-    //     //     if(c == character){
-    //     //         _textBox.pageToDisplay++;
-    //     //     }
-    //     // }
-    //     char c = '_';
-    //     if(c == character){
-    //         _textBox.pageToDisplay++;
-    //     }
-    // }
     private void ButtonReveal()
     {
-        if(textManager.count < textManager.lectureText.Count - 1)
+        if(textManager.mode == 0)
         {
-            button.SetActive(true);
+            if(textManager.lectureCount < textManager.lectureText.Count - 1)
+            {
+                button.SetActive(true);
+            }
+            else if(textManager.lectureCount == textManager.lectureText.Count - 1)
+            {
+                FullTextCompleted?.Invoke();
+            }
         }
+        else if(textManager.mode == 1)
+        {
+            if(textManager.demonstrationCount < textManager.demonstrationText.Count - 1)
+            {
+                button.SetActive(true);
+            }    
+            else if(textManager.demonstrationCount == textManager.demonstrationText.Count - 1)
+            {
+                FullTextCompleted?.Invoke();
+            }
+        }
+
     }
     public void ButtonClick()
     {
-        if(textManager.count < textManager.lectureText.Count - 1)
+        if(textManager.mode == 0)
         {
-            textManager.count++;
-            _textBox.text = textManager.lectureText[textManager.count];
-            button.SetActive(false);
+            if(textManager.lectureCount < textManager.lectureText.Count - 1)
+            {
+                textManager.lectureCount++;
+                _textBox.text = textManager.lectureText[textManager.lectureCount];
+                button.SetActive(false);
+            }
+        }
+        else if(textManager.mode == 1)
+        {
+            if(textManager.demonstrationCount < textManager.demonstrationText.Count - 1)
+            {
+                textManager.demonstrationCount++;
+                _textBox.text = textManager.demonstrationText[textManager.demonstrationCount];
+                button.SetActive(false);
+            }    
         }
     }
 }

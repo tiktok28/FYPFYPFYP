@@ -1,0 +1,8 @@
+5. Take the protractor and place it on top of the prism and invert it so that the flat edge is facing the direction of which the ray is being refracted.
+6. Measure the angle between the normal and the angle of the refracted ray and write it down.
+7. Place the respective values into their places in the formula of: n1∙ sin θ1 = n2∙ sin θ2
+8. In this example, the formula will become 1.00 ∙ sin(43.9) = n2∙ sin(27.5)
+9. Rearrange the formula to get the refractive index of the medium:
+n2 = ((1.00 ∙ sin(43.9)) ÷ sin(27.5))
+n2 = 1.5
+

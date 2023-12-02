@@ -1,0 +1,3 @@
+Snell's Law
+
+The following experiment will showcase how you can measure the refractive index of an object based on the angle of the incident and refracted ray. This measurement is based off Snell's Law. Snell's law describes the connection between the angle at which a beam of light approaches a new transparent medium (angle of incidence) and the angle at which it changes direction upon entering that transparent medium (angle of refraction).

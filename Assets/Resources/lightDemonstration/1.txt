@@ -1,1 +1,5 @@
-test 2
+In the following experiment, there will be 3 objects of interest:
+
+1. Laser Pointer
+2. Prism
+3. Triangular protractor

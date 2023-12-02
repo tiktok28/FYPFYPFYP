@@ -1,0 +1,3 @@
+2. Prism
+
+This object acts as a transparent refractive medium whereby light gets refracted at a certain angle based on the refractive index of the object as well as the angle of incident which hits the object. 

@@ -1,0 +1,5 @@
+For the purposes of this VR application, you are simply required to record down the angles of incident and refraction. Calculation will be handled by the system.
+
+Do not worry of not having an accurate answer. The system will handle a degree of your approximation and assess how accurate you are to the correct answer.
+
+With that in mind, good luck with your assessment!

@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -50,7 +50,7 @@ public class ButtonHandler : MonoBehaviour
         }
         
     }
-    IEnumerator LightConcepts()
+    public IEnumerator LightConcepts()
     {
         GameManager.Instance.lectureMode = 0;
         yield return new WaitForSeconds(0.1f);
@@ -68,7 +68,7 @@ public class ButtonHandler : MonoBehaviour
         }
         SceneManager.SetActiveScene(classroom);
     }
-    IEnumerator ElectricityConcepts()
+    public IEnumerator ElectricityConcepts()
     {
         GameManager.Instance.lectureMode = 1;
         yield return new WaitForSeconds(0.1f);
@@ -103,8 +103,27 @@ public class ButtonHandler : MonoBehaviour
         }
         
     }
-    IEnumerator Demonstrations()
+    public IEnumerator LightDemonstrations()
     {
+        GameManager.Instance.demonstrationMode = 0;
+        yield return new WaitForSeconds(0.1f);
+        GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
+        mmXR.SetActive(false);
+        Scene classroom = SceneManager.GetSceneByName("Classroom");
+        var sceneObjs = classroom.GetRootGameObjects();
+        for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "Demonstration"){
+                sceneObjs[i].SetActive(true);
+            }
+            if(sceneObjs[i].name == "XR Origin (Classroom)"){
+                sceneObjs[i].SetActive(true);
+            }
+        }
+        SceneManager.SetActiveScene(classroom);
+    }
+    public IEnumerator ElectricityDemonstrations()
+    {
+        GameManager.Instance.demonstrationMode = 1;
         yield return new WaitForSeconds(0.1f);
         GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
         mmXR.SetActive(false);
@@ -138,7 +157,7 @@ public class ButtonHandler : MonoBehaviour
         }
         
     }
-    IEnumerator Assessments()
+    public IEnumerator Assessments()
     {
         yield return new WaitForSeconds(0.1f);
         GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
@@ -165,11 +184,11 @@ public class ButtonHandler : MonoBehaviour
     }
     public void LightDemonstrationsButton()
     {
-        StartCoroutine(Demonstrations());
+        StartCoroutine(LightDemonstrations());
     }
     public void ElectricityDemonstrationsButton()
     {
-        StartCoroutine(Demonstrations());
+        StartCoroutine(ElectricityDemonstrations());
     }
         public void LightAssessmentsButton()
     {
@@ -192,5 +211,21 @@ public class ButtonHandler : MonoBehaviour
         GameObject menuCanvas = pauseMenu.transform.Find("MenuCanvas").gameObject;
         menuCanvas.SetActive(false);
         GameManager.Instance.ResumeGame();
+    }
+    public IEnumerator LeavingDemonstrations()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GameObject.Find("XR Origin (Classroom)").SetActive(false);
+        GameObject.Find("Demonstration").SetActive(false);
+        GameObject.Find("XR Origin (Main Menu)").SetActive(true);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
+    }
+    public IEnumerator LeavingLectures()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GameObject.Find("XR Origin (Classroom)").SetActive(false);
+        GameObject.Find("Demonstration").SetActive(false);
+        GameObject.Find("XR Origin (Main Menu)").SetActive(true);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
     }
 }

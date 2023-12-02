@@ -1,0 +1,3 @@
+1. Laser Pointer
+
+As the name suggests, this object projects a laser beam which will be the light source for this experiment. When holding the object, please press the Trigger Button to activate the laser beam and similarly press it again to deactivate the laser beam.
