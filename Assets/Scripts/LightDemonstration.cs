@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -13,6 +14,7 @@ public class LightDemonstration : MonoBehaviour
     private Boolean readyForEvent = false;
     void Awake()
     {
+        PageSkipper.FullTextCompleted += OffLaser;
         count = boardText.GetComponent<TextManager>().demonstrationCount;
     }
 
@@ -56,6 +58,25 @@ public class LightDemonstration : MonoBehaviour
             StartCoroutine(Event9());
             readyForEvent = false;
         }
+        if(count == 10)
+        {
+            try
+            {
+                GameObject.Find("XR Origin (Classroom)").transform.Find("Camera Offset").transform.Find("Left Grab Ray").gameObject.SetActive(false);
+                GameObject.Find("XR Origin (Classroom)").transform.Find("Camera Offset").transform.Find("Left Controller").GetComponent<XRDirectInteractor>().enabled = false;
+                GameObject.Find("XR Origin (Classroom)").transform.Find("Camera Offset").transform.Find("Right Grab Ray").gameObject.SetActive(false);
+                GameObject.Find("XR Origin (Classroom)").transform.Find("Camera Offset").transform.Find("Right Controller").GetComponent<XRDirectInteractor>().enabled = false;
+            }
+            catch(Exception e)
+            {
+                //Do nothing as error is expected and no handling is required.
+            }
+
+        }
+    }
+    void OffLaser()
+    {
+        laser.GetComponent<ShootLaser>().forceOff();
     }
     private IEnumerator Event8() 
     {

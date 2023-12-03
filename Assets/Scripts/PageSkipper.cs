@@ -35,6 +35,7 @@ public class PageSkipper : MonoBehaviour
             }
             else if(textManager.lectureCount == textManager.lectureText.Count - 1)
             {
+                Debug.Log("FulltextInvoked");
                 FullTextCompleted?.Invoke();
             }
         }
@@ -46,6 +47,7 @@ public class PageSkipper : MonoBehaviour
             }    
             else if(textManager.demonstrationCount == textManager.demonstrationText.Count - 1)
             {
+                Debug.Log("FulltextInvoked");
                 FullTextCompleted?.Invoke();
             }
         }

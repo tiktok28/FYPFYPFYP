@@ -110,8 +110,8 @@ public class LaserBeam
             Ray ray2 = new Ray(newRayStartPos, -refractedVector);
             RaycastHit hit2;
 
-            Debug.Log("Incident angle=" + Vector3.Angle(direction, -hitInfo.normal));
-            Debug.Log("Refracted angle=" + Vector3.Angle(refractedVector, -hitInfo.normal));
+            // Debug.Log("Incident angle=" + Vector3.Angle(direction, -hitInfo.normal));
+            // Debug.Log("Refracted angle=" + Vector3.Angle(refractedVector, -hitInfo.normal));
 
             if(Physics.Raycast(ray2, out hit2, distanceFromCollider, 1))
             {

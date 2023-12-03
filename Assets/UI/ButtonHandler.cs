@@ -67,6 +67,7 @@ public class ButtonHandler : MonoBehaviour
             }
         }
         SceneManager.SetActiveScene(classroom);
+        SceneManager.UnloadSceneAsync("Main Menu");
     }
     public IEnumerator ElectricityConcepts()
     {
@@ -85,6 +86,7 @@ public class ButtonHandler : MonoBehaviour
             }
         }
         SceneManager.SetActiveScene(classroom);
+        SceneManager.UnloadSceneAsync("Main Menu");
     }
     public void DemonstrationsButton()
     {
@@ -119,6 +121,14 @@ public class ButtonHandler : MonoBehaviour
                 sceneObjs[i].SetActive(true);
             }
         }
+        Scene currentScene = SceneManager.GetActiveScene();
+        var currentObjs = currentScene.GetRootGameObjects();
+        for (int i = 0; i < currentObjs.Length; i++)
+        {
+            if(currentObjs[i].name == "DemonstrationsCanvas"){
+                currentObjs[i].SetActive(false);
+            }
+        }
         SceneManager.SetActiveScene(classroom);
     }
     public IEnumerator ElectricityDemonstrations()
@@ -138,6 +148,7 @@ public class ButtonHandler : MonoBehaviour
             }
         }
         SceneManager.SetActiveScene(classroom);
+        SceneManager.UnloadSceneAsync("Main Menu");
     }
     public void AssessmentsButton()
     {
@@ -157,8 +168,9 @@ public class ButtonHandler : MonoBehaviour
         }
         
     }
-    public IEnumerator Assessments()
+    public IEnumerator LightAssessments()
     {
+        GameManager.Instance.assessmentMode = 0;
         yield return new WaitForSeconds(0.1f);
         GameObject mmXR = GameObject.Find("XR Origin (Main Menu)");
         mmXR.SetActive(false);
@@ -170,6 +182,14 @@ public class ButtonHandler : MonoBehaviour
             }
             if(sceneObjs[i].name == "XR Origin (Classroom)"){
                 sceneObjs[i].SetActive(true);
+            }
+        }
+        Scene currentScene = SceneManager.GetActiveScene();
+        var currentObjs = currentScene.GetRootGameObjects();
+        for (int i = 0; i < currentObjs.Length; i++)
+        {
+            if(currentObjs[i].name == "AssessmentsCanvas"){
+                currentObjs[i].SetActive(false);
             }
         }
         SceneManager.SetActiveScene(classroom);
@@ -190,14 +210,14 @@ public class ButtonHandler : MonoBehaviour
     {
         StartCoroutine(ElectricityDemonstrations());
     }
-        public void LightAssessmentsButton()
+    public void LightAssessmentsButton()
     {
-        StartCoroutine(Assessments());
+        StartCoroutine(LightAssessments());
     }
-    public void ElectricityAssessmentsButton()
-    {
-        StartCoroutine(Assessments());
-    }
+    // public void ElectricityAssessmentsButton()
+    // {
+    //     StartCoroutine(Assessments());
+    // }
     public void ResumeButton()
     {
         GameObject pauseMenu = GameObject.Find("PauseMenu");
@@ -210,22 +230,69 @@ public class ButtonHandler : MonoBehaviour
         GameObject pauseMenu = GameObject.Find("PauseMenu");
         GameObject menuCanvas = pauseMenu.transform.Find("MenuCanvas").gameObject;
         menuCanvas.SetActive(false);
+        if(GameObject.Find("Demonstration").activeInHierarchy)
+        {
+            StartCoroutine(LeavingDemonstrations());
+        }
+        else if(GameObject.Find("Assessment").activeInHierarchy)
+        {
+            StartCoroutine(LeavingAssessments());
+        }
         GameManager.Instance.ResumeGame();
     }
-    public IEnumerator LeavingDemonstrations()
+    public static IEnumerator LeavingDemonstrations()
     {
-        yield return new WaitForSeconds(0.1f);
         GameObject.Find("XR Origin (Classroom)").SetActive(false);
-        GameObject.Find("Demonstration").SetActive(false);
-        GameObject.Find("XR Origin (Main Menu)").SetActive(true);
+        // GameObject.Find("Demonstration").SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        Scene mainmenu = SceneManager.GetSceneByName("Main Menu");
+        var sceneObjs = mainmenu.GetRootGameObjects();
+        for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "MMCanvas"){
+                sceneObjs[i].SetActive(true);
+            }
+            if(sceneObjs[i].name == "XR Origin (Main Menu)"){
+                sceneObjs[i].SetActive(true);
+            }
+        }
+        yield return new WaitForSeconds(0.1f);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
+        SceneManager.UnloadSceneAsync("Classroom");
     }
-    public IEnumerator LeavingLectures()
+    public static IEnumerator LeavingLectures()
+    {
+        GameObject.Find("XR Origin (Classroom)").SetActive(false);
+        // GameObject.Find("Demonstration").SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        Scene mainmenu = SceneManager.GetSceneByName("Main Menu");
+        var sceneObjs = mainmenu.GetRootGameObjects();
+        for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "MMCanvas"){
+                sceneObjs[i].SetActive(true);
+            }
+            if(sceneObjs[i].name == "XR Origin (Main Menu)"){
+                sceneObjs[i].SetActive(true);
+            }
+        }
+        yield return new WaitForSeconds(0.1f);
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
+        SceneManager.UnloadSceneAsync("Classroom");
+    }
+    public static IEnumerator LeavingAssessments()
     {
         yield return new WaitForSeconds(0.1f);
         GameObject.Find("XR Origin (Classroom)").SetActive(false);
-        GameObject.Find("Demonstration").SetActive(false);
-        GameObject.Find("XR Origin (Main Menu)").SetActive(true);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
+        GameObject.Find("Assessment").SetActive(false);
+        Scene mainmenu = SceneManager.GetSceneByName("Main Menu");
+        var sceneObjs = mainmenu.GetRootGameObjects();
+        for (int i = 0; i < sceneObjs.Length; i++){
+            if(sceneObjs[i].name == "MMCanvas"){
+                sceneObjs[i].SetActive(true);
+            }
+            if(sceneObjs[i].name == "XR Origin (Main Menu)"){
+                sceneObjs[i].SetActive(true);
+            }
+        }
+        SceneManager.UnloadSceneAsync("Classroom");
     }
 }

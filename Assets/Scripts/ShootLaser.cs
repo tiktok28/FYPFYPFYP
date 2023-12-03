@@ -60,6 +60,10 @@ public class ShootLaser : MonoBehaviour
     {
         state = true;
     }
+    public void forceOff()
+    {
+        state = false;
+    }
 
     
 }
