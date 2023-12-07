@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Linq;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,11 +14,9 @@ public class GameManager : MonoBehaviour
     public int demonstrationMode; //0 = Light, 1 = Electricity
 
     public int assessmentMode; //0 = Light, 1 = Electricity
-    public float timeElapsed;
 
     private void Awake()
     {
-        PageSkipper.FullTextCompleted += returnToMenu;
         if (Instance == null)
         {
             Instance = this;
@@ -27,16 +27,6 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Update()
-    {
-        timeElapsed += Time.deltaTime;
-    }
-
-    void Start()
-    {
-        timeElapsed = 0;
-    }
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -45,21 +35,5 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1;
-    }
-    private void returnToMenu()
-    {
-        StartCoroutine(returnToMenuWithDelay());
-    }
-    private IEnumerator returnToMenuWithDelay()
-    {
-        yield return new WaitForSeconds(1f);
-        if(GameObject.Find("Lecture").activeInHierarchy)
-        {
-            StartCoroutine(ButtonHandler.LeavingLectures());
-        }
-        if(GameObject.Find("Demonstration").activeInHierarchy)
-        {
-            StartCoroutine(ButtonHandler.LeavingDemonstrations());
-        }
     }
 }

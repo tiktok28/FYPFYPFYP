@@ -35,7 +35,7 @@ public class LightAssessment : MonoBehaviour
     private GameObject measuringTool;
     public List<GameObject> gameObjects = new List<GameObject>();
     public bool loadSaved = false;
-    public float generatedIndex1 = (float)Math.Round(GetPseudoDoubleWithinRange(1, 2), 2);
+    private float generatedIndex1 = (float)Math.Round(GetPseudoDoubleWithinRange(1, 2), 2);
     // public float generatedIndex2 = (float)Math.Round(GetPseudoDoubleWithinRange(1, 2), 2);
     private void Awake()
     {
@@ -168,7 +168,7 @@ public class LightAssessment : MonoBehaviour
         return rRangeDouble;
     }
 
-    public string ratingCalculator(double percentage)
+    public static string ratingCalculator(double percentage)
     {
         if (percentage >= 90 && percentage <= 100)
         {

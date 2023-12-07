@@ -27,11 +27,13 @@ public class ShootLaser : MonoBehaviour
     void OnEnable()
     {
         state = false;
+        shutdownLaser();
     }
 
     void OnDisable()
     {
         state = false;
+        shutdownLaser();
     }
     void Update()
     {
@@ -64,6 +66,11 @@ public class ShootLaser : MonoBehaviour
     {
         state = false;
     }
-
-    
+    public  void shutdownLaser()
+    {
+        if(beam != null)
+        {
+            Destroy(beam.laserObj);
+        }
+    }
 }

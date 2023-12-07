@@ -8,6 +8,7 @@ using System.Linq;
 
 public class TextManager : MonoBehaviour
 {
+    private TextAsset[] textFiles;
     public List<string> lectureText = new List<string>();
     public List<string> demonstrationText = new List<string>();
     private string lectureName;
@@ -42,20 +43,16 @@ public class TextManager : MonoBehaviour
             {
                 lectureName = "electricityLecture";
             }
-            // Directory path where your text files are located
-            string directoryPath = "Assets/Resources/" + lectureName;
 
             // Get all text files in the specified directory
-            string[] textFiles = Directory.GetFiles(directoryPath, "*.txt").OrderBy(f =>int.Parse(Path.GetFileNameWithoutExtension(f))).ToArray();
+            textFiles = Resources.LoadAll<TextAsset>(lectureName);
+            textFiles = textFiles.OrderBy(file => GetNumericValue(file.name)).ToArray();
 
             // Iterate over each text file
-            foreach (string filePath in textFiles)
+            foreach (var text in textFiles)
             {
-                // Read the contents of the file
-                string fileContents = File.ReadAllText(filePath);
-
-                lectureText.Add(fileContents);
-                // Debug.Log(filePath);
+                lectureText.Add(text.text);
+                // Debug.Log(fileContents);
             }
         }
         else
@@ -68,21 +65,28 @@ public class TextManager : MonoBehaviour
             {
                 demonstrationName = "electricityDemonstration";
             }
-            // Directory path where your text files are located
-            string directoryPath = "Assets/Resources/" + demonstrationName;
 
             // Get all text files in the specified directory
-            string[] textFiles = Directory.GetFiles(directoryPath, "*.txt").OrderBy(f =>int.Parse(Path.GetFileNameWithoutExtension(f))).ToArray();
+            textFiles = Resources.LoadAll<TextAsset>(demonstrationName);
+            textFiles = textFiles.OrderBy(file => GetNumericValue(file.name)).ToArray();
 
             // Iterate over each text file
-            foreach (string filePath in textFiles)
+            foreach (var text in textFiles)
             {
-                // Read the contents of the file
-                string fileContents = File.ReadAllText(filePath);
-
-                demonstrationText.Add(fileContents);
-                // Debug.Log(filePath);
+                demonstrationText.Add(text.text);
+                // Debug.Log(fileContents);
             }
         }
+    }
+    //Ensures that the files are read in numerical ascending order
+    int GetNumericValue(string fileName)
+    {
+        string numericPart = new string(fileName.Where(char.IsDigit).ToArray());
+
+        if (int.TryParse(numericPart, out int numericValue))
+        {
+            return numericValue;
+        }
+        return 0;
     }
 }

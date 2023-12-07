@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.Rendering.Universal.Internal;
+using System.Linq;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -66,8 +67,15 @@ public class ButtonHandler : MonoBehaviour
                 sceneObjs[i].SetActive(true);
             }
         }
+        Scene currentScene = SceneManager.GetActiveScene();
+        var currentObjs = currentScene.GetRootGameObjects();
+        for (int i = 0; i < currentObjs.Length; i++)
+        {
+            if(currentObjs[i].name == "ConceptsCanvas"){
+                currentObjs[i].SetActive(false);
+            }
+        }
         SceneManager.SetActiveScene(classroom);
-        SceneManager.UnloadSceneAsync("Main Menu");
     }
     public IEnumerator ElectricityConcepts()
     {
@@ -225,29 +233,42 @@ public class ButtonHandler : MonoBehaviour
         menuCanvas.SetActive(false);
         GameManager.Instance.ResumeGame();
     }
-    public void SaveNExitButton()
-    {
-        GameObject pauseMenu = GameObject.Find("PauseMenu");
-        GameObject menuCanvas = pauseMenu.transform.Find("MenuCanvas").gameObject;
-        menuCanvas.SetActive(false);
-        if(GameObject.Find("Demonstration").activeInHierarchy)
+    public void ExitButton()
+    {   var sceneObjs = SceneManager.GetSceneByName("Classroom").GetRootGameObjects();
+        bool isAssessments = false;
+        for (int i = 0; i < sceneObjs.Length; i++)
         {
-            StartCoroutine(LeavingDemonstrations());
+            if(sceneObjs[i].name == "Assessments")
+            {
+                if(sceneObjs[i].activeInHierarchy)
+                {
+                    isAssessments = true;
+                }
+                else
+                {
+                    isAssessments = false;
+                }
+            }
         }
-        else if(GameObject.Find("Assessment").activeInHierarchy)
+        if(isAssessments)
         {
             StartCoroutine(LeavingAssessments());
         }
+        else
+        {
+            StartCoroutine(Leaving());
+        }
         GameManager.Instance.ResumeGame();
     }
-    public static IEnumerator LeavingDemonstrations()
+    public static IEnumerator Leaving()
     {
+        yield return new WaitForSeconds(0.1f);
         GameObject.Find("XR Origin (Classroom)").SetActive(false);
         // GameObject.Find("Demonstration").SetActive(false);
-        yield return new WaitForSeconds(0.1f);
         Scene mainmenu = SceneManager.GetSceneByName("Main Menu");
         var sceneObjs = mainmenu.GetRootGameObjects();
-        for (int i = 0; i < sceneObjs.Length; i++){
+        for (int i = 0; i < sceneObjs.Length; i++)
+        {
             if(sceneObjs[i].name == "MMCanvas"){
                 sceneObjs[i].SetActive(true);
             }
@@ -255,27 +276,8 @@ public class ButtonHandler : MonoBehaviour
                 sceneObjs[i].SetActive(true);
             }
         }
-        yield return new WaitForSeconds(0.1f);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
-        SceneManager.UnloadSceneAsync("Classroom");
-    }
-    public static IEnumerator LeavingLectures()
-    {
-        GameObject.Find("XR Origin (Classroom)").SetActive(false);
-        // GameObject.Find("Demonstration").SetActive(false);
         yield return new WaitForSeconds(0.1f);
-        Scene mainmenu = SceneManager.GetSceneByName("Main Menu");
-        var sceneObjs = mainmenu.GetRootGameObjects();
-        for (int i = 0; i < sceneObjs.Length; i++){
-            if(sceneObjs[i].name == "MMCanvas"){
-                sceneObjs[i].SetActive(true);
-            }
-            if(sceneObjs[i].name == "XR Origin (Main Menu)"){
-                sceneObjs[i].SetActive(true);
-            }
-        }
-        yield return new WaitForSeconds(0.1f);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName("Main Menu"));
         SceneManager.UnloadSceneAsync("Classroom");
     }
     public static IEnumerator LeavingAssessments()
@@ -285,7 +287,8 @@ public class ButtonHandler : MonoBehaviour
         GameObject.Find("Assessment").SetActive(false);
         Scene mainmenu = SceneManager.GetSceneByName("Main Menu");
         var sceneObjs = mainmenu.GetRootGameObjects();
-        for (int i = 0; i < sceneObjs.Length; i++){
+        for (int i = 0; i < sceneObjs.Length; i++)
+        {
             if(sceneObjs[i].name == "MMCanvas"){
                 sceneObjs[i].SetActive(true);
             }
