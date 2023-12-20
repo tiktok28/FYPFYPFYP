@@ -1,2 +1,7 @@
 # Physics Practice Learning and Assessment in Virtual Reality
 
+To load the project, download Unity Hub, create a free account and login. Once logged in, load this folder as project and it will prompt you to download a specific version of Unity editor. Download the prompted Unity editor and install. Ensure that during installation that you have ticked Windows Build Support (IL2CPP). Once loaded in, you are able to see the editor. From where, access the Scenes folder and drag the Main Menu and Classroom scene into the Hierarchy. From where the project has been setup for play and build-ready.
+
+To compile the code into an executable, first download Visual Studio and ensure that it comes with Windows SDK and C++ workload installed under Desktop environment during the setup installation. Then, head to File > Build Settings. Then select Windows platform and start building and by the end of this process, an application will be built with an .exe file as the executable.
+
+To start the application, ensure that you have a VR headset on hand and is already setup. For Quest 2 specifically, ensure that the Quest is in the Quest Link mode. Once Quest Link is done, you may run the FYP.exe and the application shall begin.
